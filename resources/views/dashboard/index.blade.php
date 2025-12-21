@@ -252,7 +252,7 @@
                                             </li>
                                             <li class="breadcrumb-item">
                                                 <!-- set page name in bread crumb -->
-                                                <a href=""></a>
+                                                <a href="">{{ $page }}</a>
                                             </li>
                                         </ul>
                                     </div>
