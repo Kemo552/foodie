@@ -1,31 +1,36 @@
 <?php
 
-namespace App\Http\Controllers\Dashoard;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 use Exception;
+use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $category = null;
+        $product = null;
         $cmd_name = 'Add';
         if ($request->has('edit')) {
-            $category = Category::findOrFail($request->edit);
+            $product = Product::findOrFail($request->edit);
             $cmd_name = 'Update';
         }
-        $categories = Category::all();
-        return view('dashboard.categories', [
-            'categories' => $categories,
-            'category' => $category,
+        $products = Product::all();
+        foreach ($products as $prod) {
+            $prod['category_name'] = $prod->category->name;
+        }
+        return view('dashboard.products', [
+            'products' => $products,
+            'categories' => Category::all(),
+            'product' => $product,
             'cmd_name' => $cmd_name,
+            'page' => 'Products'
         ]);
     }
 
@@ -43,22 +48,35 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         try {
+            $request->validate([
+                'name' => 'required|string',
+                'description' => 'nullable',
+                'price' => 'required|numeric',
+                'quantity' => 'required|integer',
+                'category_id' => 'required|integer',
+                'imageUrl' => 'image|mimes:png,jpg,jpeg',
+            ]);
+
             if ($request->hasFile('imageUrl')) {
                 $file = $request->imageUrl;
                 $file_name = time() . '.' . $file->getClientOriginalExtension();
-                $request->imageUrl->move('images\category', $file_name);
+                $request->imageUrl->move('images\product', $file_name);
             } else {
                 $file_name = 'no_image.png';
             }
 
-            Category::create([
+            Product::create([
                 'name' => $request->name,
-                'imageUrl' => "images/category/" . $file_name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'category_id' => $request->category_id,
+                'imageUrl' => $file_name,
                 'active' => $request->active,
             ]);
 
-            return redirect()->route('category.index')
-                ->with('msg', "Category has been added successfully")
+            return redirect()->route('product.index')
+                ->with('msg', "Product has been added successfully")
                 ->with('msg_cls', "success");
         } catch (Exception $ex) {
             return redirect()->back()
@@ -89,24 +107,30 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         try {
+            $product = Product::findOrFail($id);
             if ($request->hasFile('imageUrl')) {
                 $file = $request->imageUrl;
                 $file_name = time() . '.' . $file->getClientOriginalExtension();
-                $request->imageUrl->move('images\category', $file_name);
+                $request->imageUrl->move('images\product', $file_name);
+            } else if ($product->imageUrl != null) {
+                $file_name = $product->imageUrl;
             } else {
                 $file_name = 'no_image.png';
             }
 
-            $category = Category::findOrFail($id);
-            $category->name = $request->name;
-            $category->imageUrl = "images/category/" . $file_name;
-            $category->active = $request->active;
-            $category->updated_at = now();
-            $category->update();
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->price = $request->price;
+            $product->quantity = $request->quantity;
+            $product->category_id = $request->category_id;
+            $product->imageUrl = $file_name;
+            $product->active = $request->active;
+            $product->updated_at = now();
+            $product->update();
 
             return redirect()
-                ->route('category.index')
-                ->with('msg', 'Category has been edited successfully.')
+                ->route('product.index')
+                ->with('msg', 'Product has been edited successfully.')
                 ->with('msg_cls', 'success');
         } catch (Exception $ex) {
             return redirect()
@@ -122,11 +146,11 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         try {
-            $category = Category::findOrFail($id);
-            $category->delete();
+            $product = Product::findOrFail($id);
+            $product->delete();
             return redirect()
                 ->back()
-                ->with('msg', 'Category has been deleted successfully.')
+                ->with('msg', 'Product has been deleted successfully.')
                 ->with('msg_cls', 'success');
         } catch (Exception $ex) {
             return redirect()

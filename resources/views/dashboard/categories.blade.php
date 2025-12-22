@@ -1,6 +1,5 @@
 @extends('dashboard.index')
 @section('content')
-    {{ $page = 'Category' }}
     <div class="row">
         <div class="pcoded-inner-content pt-0">
             <div class="main-body">
@@ -48,18 +47,17 @@
                                                         <label for="">Category image</label>
                                                         <div class="">
                                                             <input type="file" class="form-control" name="imageUrl"
-                                                                value="{{ isset($category) ? $category->imageUrl : null }}"
                                                                 onchange="imageView(this);">
                                                         </div>
                                                     </div>
                                                     <div class="form-check pl-4">
                                                         <input type="hidden" name="active" value="0">
-                                                        <input type="checkbox" name="active" value="1"
+                                                        <input type="checkbox" name="active" value="1" id="checkbox"
                                                             {{ old('active', $category->active ?? 0) ? 'checked' : '' }}
                                                             class="form-check-input">
-                                                        <span>
+                                                        <label for="checkbox">
                                                             Active?
-                                                        </span>
+                                                        </label>
                                                     </div>
                                                     <div class="pb-5">
                                                         <input type="submit" value="{{ $cmd_name }}"
@@ -69,10 +67,8 @@
                                                             class="btn btn-primary">Cancel</a>
                                                     </div>
                                                     <div class="">
-                                                        @if (isset($category))
-                                                            <img src="{{ asset($category->imageUrl) }}" id="imgThumbnail"
-                                                                class="img-thumbnail" width="200" height="200">
-                                                        @endif
+                                                        <img src="{{ isset($category) ? asset('images/category/' . $category->imageUrl) : null }}"
+                                                            id="imgThumbnail" class="img-thumbnail">
                                                     </div>
                                                 </div>
                                             </form>
@@ -97,7 +93,7 @@
                                                                         <td>{{ $category->name }}</td>
                                                                         <td>
                                                                             <img width="35"
-                                                                                src="{{ $category->imageUrl }}" />
+                                                                                src="{{ 'images/category/' . $category->imageUrl }}" />
                                                                         </td>
                                                                         <td>
                                                                             <label

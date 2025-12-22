@@ -235,6 +235,11 @@
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Category</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
+                                    <a href="/product">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Product</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -246,7 +251,7 @@
                                     <div class="page-header-breadcrumb">
                                         <ul class="breadcrumb-title">
                                             <li class="breadcrumb-item">
-                                                <a href="dashboard">
+                                                <a href="/">
                                                     <i class="icofont icofont-home"></i>
                                                 </a>
                                             </li>
