@@ -179,7 +179,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="auth-normal-sign-in.html">
+                                        <a href="{{ route('logout') }}">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
                                     </li>

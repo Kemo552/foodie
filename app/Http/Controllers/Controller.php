@@ -9,4 +9,25 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+
+    public $class = 'sub_page';
+    public function about_us()
+    {
+        return view('user.about')->with('class', $this->class);
+    }
+
+    public function home()
+    {
+        return view('user.home')->with('class', null);
+    }
+
+    public function menu()
+    {
+        return view('user.menu')->with('class', $this->class);
+    }
+
+    public function book_table()
+    {
+        return view('user.book-table')->with('class', $this->class);
+    }
 }
