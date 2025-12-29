@@ -92,7 +92,7 @@
                                 <a href="{{ route('profile') }}" class="user_link">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                 </a>
-                                <a class="cart_link" href="#">
+                                <a class="cart_link" href="{{ route('cart.index') }}">
                                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                         viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;"
@@ -302,7 +302,7 @@
     <script>
         /*for disappearing alert message*/
         window.onload = function() {
-            var seconds = 5;
+            var seconds = 10;
             setTimeout(function() {
                 document.getElementById("message").style.display = "none";
             }, seconds * 1000);

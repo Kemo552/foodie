@@ -4,10 +4,14 @@
         <div class="pcoded-inner-content pt-0">
             <div class="main-body">
                 <div class="page-wrapper pt-0 pb-0">
-                    <div class="align-align-self-end">
+                    <div class="align-self-end">
                         @if (session()->has('msg'))
-                            <label for="message" id="message" class="alert alert-{{ session('msg_cls') }}">
+                            <label for="message" id="message"
+                                class="alert alert-{{ session('msg_cls') }} alert-dismissible">
                                 {{ session('msg') }}
+                                <a class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </a>
                             </label>
                         @endif
                     </div>

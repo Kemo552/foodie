@@ -3,9 +3,17 @@
     <section class="book_section layout_padding">
         <div class="container">
             <div class="heading_container">
-                <h2>
-                    Book A Table
-                </h2>
+                <div class="align-self-end">
+                    @if (session()->has('msg'))
+                        <label for="message" id="message" class="alert alert-{{ session('msg_cls') }} alert-dismissible">
+                            {{ session('msg') }}
+                            <a class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </a>
+                        </label>
+                    @endif
+                </div>
+                <h2>Book A Table</h2>
             </div>
             <div class="row">
                 <div class="col-md-6">

@@ -3,10 +3,13 @@
     <section class="book_section layout_padding">
         <div class="container">
             <div class="heading_container">
-                <div class="align-self-center">
+                <div class="align-self-end">
                     @if (session()->has('msg'))
-                        <label for="message" id="message" class="alert alert-{{ session('msg_cls') }}">
+                        <label for="message" id="message" class="alert alert-{{ session('msg_cls') }} alert-dismissible">
                             {{ session('msg') }}
+                            <a class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </a>
                         </label>
                     @endif
                 </div>
@@ -23,8 +26,8 @@
                                             style="width: 150px; height: 150px;" class="img-thumbnail" />
                                         <div class="middle pt-2">
                                             <a href="{{ route('profile.edit.form', ['edit' => $user->id]) }}"
-                                                class="btn btn-warning">
-                                                <i class="fa fa-pencil"></i>Edit Details
+                                                class="btn btn-warning pl-3 pr-3">
+                                                <i class="fa fa-pencil mr-2"></i>Edit Details
                                             </a>
                                         </div>
                                     </div>
@@ -63,7 +66,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#connectedServices" class="nav-link active text-info"
+                                            <a href="#connectedServices" class="nav-link text-info"
                                                 id="connectedServices-tab" data-toggle="tab" role="tab"
                                                 aria-controls="connectedServices" aria-selected="true">
                                                 <i class="fa fa-history mr-2"></i>Purchased History
@@ -72,6 +75,7 @@
                                     </ul>
 
                                     <div class="tab-content ml-1" id="myTabContent">
+                                        {{-- Basic Info --}}
                                         <div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
                                             aria-labelledby="basicInfo-tab">
                                             <div class="row">
@@ -82,6 +86,7 @@
                                                     {{ $user->name }}
                                                 </div>
                                             </div>
+                                            <hr>
                                             <div class="row">
                                                 <div class="col-sm-3 col-md-2 col-5">
                                                     <label style="font-weight:bold;">User Name</label>
@@ -90,6 +95,7 @@
                                                     {{ $user->username }}
                                                 </div>
                                             </div>
+                                            <hr>
                                             <div class="row">
                                                 <div class="col-sm-3 col-md-2 col-5">
                                                     <label style="font-weight:bold;">Email</label>
@@ -98,6 +104,7 @@
                                                     {{ $user->email }}
                                                 </div>
                                             </div>
+                                            <hr>
                                             <div class="row">
                                                 <div class="col-sm-3 col-md-2 col-5">
                                                     <label style="font-weight:bold;">Mobile phone</label>
@@ -106,6 +113,7 @@
                                                     {{ $user->phone }}
                                                 </div>
                                             </div>
+                                            <hr>
                                             <div class="row">
                                                 <div class="col-sm-3 col-md-2 col-5">
                                                     <label style="font-weight:bold;">ZIP / Post Code</label>
@@ -114,6 +122,7 @@
                                                     {{ $user->zip }}
                                                 </div>
                                             </div>
+                                            <hr>
                                             <div class="row">
                                                 <div class="col-sm-3 col-md-2 col-5">
                                                     <label style="font-weight:bold;">Address</label>
@@ -123,6 +132,75 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        {{-- End of Basic Info --}}
+                                        <div class="tab-pane fade" id="connectedServices" role="tabpanel"
+                                            aria-labelledby="ConnectedServices-tab">
+                                            <div class="container">
+                                                <div class="row pt-1 pb-1" style="background-color: lightgray;">
+                                                    <div class="col-4">
+                                                        <span class="badge badge-pill badge-dark text-white">
+                                                            <%# Eval("SrNo") %>
+                                                        </span>
+                                                        Payment Mode:
+                                                        <%# Eval("PaymentMode").ToString() == "cod" ? "Cash On Delievery" : Eval("PaymentMode").ToString().ToUpper() %>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <%# string.IsNullOrEmpty(Eval("CardNo").ToString()) ? "" : "Card No:" + Eval("CardNo") %>
+                                                    </div>
+                                                    <div class="col-2" style="text-align: end;">
+                                                        <a href='Invoice.aspx?id=<%# Eval("PaymentId") %>'
+                                                            class="btn btn-info"><i
+                                                                class="fa fa-download mr-2"></i>Invoice</a>
+                                                    </div>
+                                                </div>
+                                                <table
+                                                    class="table data-table-export table-responsive-sm table-bordered table-hover">
+                                                    <thead class="bg-dark text-white">
+                                                        <tr>
+                                                            <th>Product Name</th>
+                                                            <th>Unit Price</th>
+                                                            <th>Qty</th>
+                                                            <th>Total Price</th>
+                                                            <th>OrderId</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <asp:Label ID="lblName" runat="server"
+                                                                    Text='<%# Eval("Name") %>'></asp:Label>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label ID="lblPrice" runat="server"
+                                                                    Text='<%# string.IsNullOrEmpty(Eval("Price").ToString())? "" : "$"+Eval("Price") %>'>
+                                                                </asp:Label>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label ID="lblQuantity" runat="server"
+                                                                    Text='<%# Eval("Quantity") %>'></asp:Label>
+                                                            </td>
+                                                            <td>
+                                                                $<asp:Label ID="lblTotalPrice" runat="server"
+                                                                    Text='<%# Eval("TotalPrice") %>'></asp:Label>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label ID="lblOrderNo" runat="server"
+                                                                    Text='<%# Eval("OrderNo") %>'></asp:Label>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label ID="lblStatus" runat="server"
+                                                                    Text='<%# Eval("Status") %>'
+                                                                    CssClass='<%# Eval("Status").ToString() == "Delivered"? "badge badge-success" :"badge badge-warning" %>'>
+                                                                </asp:Label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        {{-- Purchased History --}}
+                                        {{-- End of Purchased History --}}
                                     </div>
                                 </div>
                             </div>
