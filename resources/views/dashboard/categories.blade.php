@@ -100,8 +100,10 @@
                                                                                 src="{{ 'images/category/' . $category->imageUrl }}" />
                                                                         </td>
                                                                         <td>
-                                                                            <label
-                                                                                for="isActive">{{ $category->active }}</label>
+                                                                            <label for="isActive"
+                                                                                class="badge badge-{{ $category->active == 1 ? 'success' : 'danger' }}">
+                                                                                {{ $category->active == 1 ? 'Active' : 'Inactive' }}
+                                                                            </label>
                                                                         </td>
                                                                         <td>{{ $category->created_at }}</td>
                                                                         <td>

@@ -80,8 +80,8 @@
                         <a class="mobile-search morphsearch-search" href="#">
                             <i class="ti-search"></i>
                         </a>
-                        <a href="index.html">
-                            <img class="img-fluid" src="dashboard/images/logo.png" alt="Theme-Logo" />
+                        <a href="">
+                            Foodie - Dashboard
                         </a>
                         <a class="mobile-options">
                             <i class="ti-more"></i>
@@ -102,82 +102,14 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
-                            <li class="header-notification">
-                                <a href="#!">
-                                    <i class="ti-bell"></i>
-                                    <span class="badge bg-c-pink"></span>
-                                </a>
-                                <ul class="show-notification">
-                                    <li>
-                                        <h6>Notifications</h6>
-                                        <label class="label label-danger">New</label>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <img class="d-flex align-self-center img-radius"
-                                                src="dashboard/images/avatar-4.jpg" alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">John Doe</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer
-                                                    elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <img class="d-flex align-self-center img-radius"
-                                                src="dashboard/images/avatar-3.jpg" alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">Joseph William</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer
-                                                    elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <img class="d-flex align-self-center img-radius"
-                                                src="dashboard/images/avatar-4.jpg" alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">Sara Soudein</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer
-                                                    elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
                             <li class="user-profile header-notification">
-                                <a href="#!">
-                                    <img src="dashboard/images/avatar-4.jpg" class="img-radius"
+                                <a href="#">
+                                    <img src="dashboard/images/avatar-4.jpg" class="rounded-circle"
                                         alt="User-Profile-Image">
                                     <span>John Doe</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
-                                    <li>
-                                        <a href="#!">
-                                            <i class="ti-settings"></i> Settings
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-user"></i> Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-email"></i> My Messages
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-lock"></i> Lock Screen
-                                        </a>
-                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}">
                                             <i class="ti-layout-sidebar-left"></i> Logout
@@ -199,18 +131,17 @@
                                     <img class="img-40 img-radius" src="dashboard/images/avatar-4.jpg"
                                         alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span>John Doe</span>
-                                        <span id="more-details">UX Designer<i class="ti-angle-down"></i></span>
+                                        <span>Admin</span>
+                                        <span id="more-details">Foodie<i class="ti-angle-down"></i></span>
                                     </div>
                                 </div>
 
                                 <div class="main-menu-content">
                                     <ul>
                                         <li class="more-details">
-                                            <a href="#"><i class="ti-user"></i>View Profile</a>
-                                            <a href="#!"><i class="ti-settings"></i>Settings</a>
-                                            <a href="auth-normal-sign-in.html"><i
-                                                    class="ti-layout-sidebar-left"></i>Logout</a>
+                                            <a href="{{ route('logout') }}">
+                                                <i class="ti-layout-sidebar-left"></i>Logout
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -231,13 +162,36 @@
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
                                     <a href="/category">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-micon"><i class="ti-menu"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Category</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <a href="/product">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-micon"><i class="ti-agenda"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Product</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Orders</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a href="{{ route('order.status') }}">
+                                        <span class="pcoded-micon"><i class="ti-info-alt"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Order Status</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Registered Users
+                            </div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a href="{{ route('user.index') }}">
+                                        <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Manage Users</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -305,7 +259,7 @@
     <script>
         /*for disappearing alert message*/
         window.onload = function() {
-            var seconds = 5;
+            var seconds = 10;
             setTimeout(function() {
                 document.getElementById("message").style.display = "none";
             }, seconds * 1000);

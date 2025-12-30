@@ -19,41 +19,40 @@
                 <div class="col-md-6">
                     <div class="form_container">
                         <form action="">
+                            @csrf
                             <div>
-                                <input type="text" class="form-control" placeholder="Your Name" />
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" />
                             </div>
                             <div>
-                                <input type="text" class="form-control" placeholder="Phone Number" />
+                                <input type="text" name="phone" class="form-control" placeholder="Phone Number" />
                             </div>
                             <div>
-                                <input type="email" class="form-control" placeholder="Your Email" />
+                                <input type="email" name="email" class="form-control" placeholder="Your Email" />
                             </div>
                             <div>
-                                <select class="form-control nice-select wide">
+                                <select class="form-control nice-select wide" name="people">
                                     <option value="" disabled selected>
                                         How many persons?
                                     </option>
-                                    <option value="">
+                                    <option value="2">
                                         2
                                     </option>
-                                    <option value="">
+                                    <option value="3">
                                         3
                                     </option>
-                                    <option value="">
+                                    <option value="4">
                                         4
                                     </option>
-                                    <option value="">
+                                    <option value="5">
                                         5
                                     </option>
                                 </select>
                             </div>
                             <div>
-                                <input type="date" class="form-control">
+                                <input type="date" name="reservation_date" class="form-control">
                             </div>
                             <div class="btn_box">
-                                <button>
-                                    Book Now
-                                </button>
+                                <button>Book Now</button>
                             </div>
                         </form>
                     </div>

@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\OrderStatusController;
 use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\GeneralUtils;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\InvoiceController;
@@ -41,6 +43,11 @@ Route::get('/dashboard', function () {
 });
 Route::resource('/category', CategoryController::class);
 Route::resource('/product', ProductController::class);
+Route::get('/orders', [OrderStatusController::class, 'index'])->name('order.status');
+Route::put('/orders/{order_id}', [OrderStatusController::class, 'update_status'])->name('order.status.update');
+Route::get('/user', [DashboardUserController::class, 'index'])->name('user.index');
+Route::delete('/users/{id}', [DashboardUserController::class, 'destroy'])->name('user.destroy');
+
 // User home
 Route::get('/about', [Controller::class, 'about_us'])->name('about-us');
 Route::get('/home', [Controller::class, 'home'])->name('home');
