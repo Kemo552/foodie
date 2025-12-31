@@ -33,7 +33,14 @@ class Controller extends BaseController
 
     public function book_table()
     {
-        return view('user.book-table')->with('class', $this->class);
+        if (auth()->user()) {
+            $user = auth()->user();
+            return view('user.book-table')->with('class', $this->class);
+        } else {
+            return redirect()->route('login')
+                ->with('msg', "Please login or register now, if you want to continue")
+                ->with('msg_cls', "warning");
+        }
     }
 
 }

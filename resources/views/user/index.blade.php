@@ -64,7 +64,7 @@
                 <div class="container">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         <a class="navbar-brand" href="{{ route('home') }}">
-                            <span>Feane</span>
+                            <span>Foodie</span>
                         </a>
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -134,11 +134,11 @@
                                         <g></g>
                                     </svg>
                                 </a>
-                                <form class="form-inline">
-                                    <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                    </button>
-                                </form>
+                                <div class="form-inline">
+                                    <a href="{{ route('reservation.index') }}" class="btn my-2 my-sm-0 nav_search-btn">
+                                        <i class="fa fa-table"></i>
+                                    </a>
+                                </div>
                                 <a href="{{ auth()->user() ? route('logout') : route('login') }}" class="order_online">
                                     {{ auth()->user() ? 'Logout' : 'Login' }}
                                 </a>
@@ -308,7 +308,13 @@
             }, seconds * 1000);
         };
     </script>
-
+    <!-- Tooltip -->
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <!-- End Tooltip -->
 </body>
 
 </html>

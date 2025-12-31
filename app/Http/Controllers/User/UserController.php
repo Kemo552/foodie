@@ -18,7 +18,8 @@ class UserController extends Controller
     public $class = 'sub_page';
     public function login(Request $request)
     {
-        return view('user.auth.login')->with('class', $this->class);
+        return view('user.auth.login')
+            ->with('class', $this->class);
     }
 
     public function register(Request $request)
@@ -85,15 +86,8 @@ class UserController extends Controller
 
     public function profile()
     {
-        if (auth()->user()) {
-            $user = auth()->user();
-            return view('user.profile', ['class' => 'sub_page', 'user' => $user]);
-        } else {
-            // $redirect = "<a href='auth.user.register'>register here ..</a>";
-            return redirect()->route('login')
-                ->with('msg', "Please login or register now, if you want to continue")
-                ->with('msg_cls', "warning");
-        }
+        $user = auth()->user();
+        return view('user.profile', ['class' => 'sub_page', 'user' => $user]);
     }
 
     public function edit_form(Request $request)
