@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::table('reservations', function (Blueprint $table) {
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('phone');
         });
     }

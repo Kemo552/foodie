@@ -22,7 +22,7 @@
                             <div class="card-title mb-4">
                                 <div class="d-flex justify-content-start">
                                     <div class="image-container">
-                                        <img src="{{ 'images/user/' . $user->imageUrl }}"
+                                        <img src="{{ asset('images/user/' . $user->imageUrl) }}"
                                             style="width: 150px; height: 150px;" class="img-thumbnail" />
                                         <div class="middle pt-2">
                                             <a href="{{ route('profile.edit.form', ['edit' => $user->id]) }}"

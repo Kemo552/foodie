@@ -50,7 +50,7 @@
                                                                         <td>{{ $user->name }}</td>
                                                                         <td>
                                                                             <img width="35" class="rounded-circle"
-                                                                                src="{{ 'images/user/' . $user->imageUrl }}" />
+                                                                                src="{{ asset('images/user/' . $user->imageUrl) }}" />
                                                                         </td>
                                                                         <td>
                                                                             {{ $user->username }}

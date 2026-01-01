@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::where('username', '<>', 'admin')->get();
         return view('dashboard.users')
             ->with('page', 'Users')
             ->with('users', $users);

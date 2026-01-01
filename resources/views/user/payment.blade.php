@@ -28,7 +28,7 @@
         })
     </script>
     {{-- function for disable back button --}}
-    {{-- <script type="text/javascript">
+    <script type="text/javascript">
         function DisableBackButton() {
             window.history.forward();
         }
@@ -40,7 +40,7 @@
         window.onunload = function() {
             void(0)
         }
-    </script> --}}
+    </script>
     {{ $month = 1 }}
     <section class="book_section"
         style="background-image: url('../Images/payment-bg.png'); width: 100%; height: 100%; background-repeat: no-repeat; background-size: auto; background-attachment: fixed; background-position: left;">

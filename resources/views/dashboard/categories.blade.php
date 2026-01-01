@@ -97,7 +97,7 @@
                                                                         <td>{{ $category->name }}</td>
                                                                         <td>
                                                                             <img width="35"
-                                                                                src="{{ 'images/category/' . $category->imageUrl }}" />
+                                                                                src="{{ asset('images/category/' . $category->imageUrl) }}" />
                                                                         </td>
                                                                         <td>
                                                                             <label for="isActive"

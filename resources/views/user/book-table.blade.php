@@ -34,20 +34,22 @@
                                 @enderror
                             </div>
                             <div>
-                                <input type="text" class="form-control @error('phone') is-invalid @enderror"
-                                    placeholder="Phone Number" name="phone"
-                                    value="{{ old('phone', $reservation->phone ?? '') }}">
                                 @error('phone')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                                    placeholder="Phone Number" name="phone"
+                                    value="{{ old('phone', $reservation->phone ?? '') }}">
+
                             </div>
                             <div>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                    placeholder="Your Email" name="phone"
-                                    value="{{ old('email', $reservation->email ?? '') }}">
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                    placeholder="Your Email" name="email"
+                                    value="{{ old('email', $reservation->email ?? '') }}">
+
                             </div>
                             <div>
                                 <select class="form-control nice-select wide @error('people') is-invalid @enderror"

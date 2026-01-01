@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\OrderStatusController;
 use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\TableReservationController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
-use App\Http\Controllers\GeneralUtils;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\InvoiceController;
 use App\Http\Controllers\User\PaymentController;
@@ -35,17 +36,19 @@ Route::post('/register', [UserController::class, 'sign_up'])->name('sign-up');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 // Dashboard
-Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => '/dashboard'], function () {
+    Route::get('/main', [DashboardController::class, 'index']);
     Route::resource('/category', CategoryController::class);
     Route::resource('/product', ProductController::class);
     Route::get('/orders', [OrderStatusController::class, 'index'])->name('order.status');
     Route::put('/orders/{order_id}', [OrderStatusController::class, 'update_status'])->name('order.status.update');
     Route::get('/user', [DashboardUserController::class, 'index'])->name('user.index');
     Route::delete('/users/{id}', [DashboardUserController::class, 'destroy'])->name('user.destroy');
+    Route::resource('/table-reservations', TableReservationController::class);
 });
 
 Route::get('/about', [Controller::class, 'about_us'])->name('about-us');
-Route::get('/', [Controller::class, 'home'])->name('home');
+Route::get('/home', [Controller::class, 'home'])->name('home');
 Route::get('/menu', [Controller::class, 'menu'])->name('menu');
 // User home
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {

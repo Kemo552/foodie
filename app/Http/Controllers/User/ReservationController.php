@@ -25,7 +25,7 @@ class ReservationController extends Controller
         if ($request->has('edit')) {
             $edit = $request->get('edit');
         }
-        $reservations = Reservation::where('user_id', auth()->id())->orderBy('reservation_date')->get();
+        $reservations = Reservation::where('user_id', auth()->id())->orderBy('reservation_date', 'asc')->get();
         return view('user.reservations', ['edit' => $edit])
             ->with('class', $this->class)
             ->with('reservations', $reservations);
@@ -126,7 +126,7 @@ class ReservationController extends Controller
             $reservation = Reservation::findOrFail($id);
             $reservation->delete();
             return redirect()->route('reservation.index')
-                ->with('class', 'Reservation has been canceled successfully')
+                ->with('msg', 'Reservation has been canceled successfully')
                 ->with('msg_cls', 'success');
         } catch (Exception $ex) {
             return redirect()->route('reservation.index')

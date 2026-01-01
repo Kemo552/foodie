@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class TableReservationController extends Controller
@@ -10,9 +11,17 @@ class TableReservationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $reservations = Reservation::all()->sortBy('reservation_date');
+        $table_reservation = null;
+        if ($request->has('table_reservation')) {
+            $table_reservation = Reservation::find($request->table_reservation);
+        }
+        return view('dashboard.table-reservations')
+            ->with('reservations', $reservations)
+            ->with('page', 'Reservations')
+            ->with('table', $table_reservation);
     }
 
     /**
@@ -52,7 +61,18 @@ class TableReservationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'people' => 'required',
+            'reservation_date' => 'required|date',
+        ]);
+        $reservation = Reservation::findOrFail($id);
+        $reservation->people = $request->people;
+        $reservation->reservation_date = $request->reservation_date;
+        $reservation->update();
+        return redirect()
+            ->route('table-reservations.index')
+            ->with('msg', 'Reservation has been updated successfully!')
+            ->with('msg_cls', 'success');
     }
 
     /**

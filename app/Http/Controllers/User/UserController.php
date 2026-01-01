@@ -35,9 +35,10 @@ class UserController extends Controller
                 'password' => 'required',
             ]
         );
-        if ($request->username == 'admin' && $request->password == '12345678') {
-            return view('dashboard.dashboard')->with('admin', $request->username);
-        } else if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+            if ($request->username == 'admin') {
+                return redirect('/dashboard/main');
+            }
             return view('user.home', ['class' => null]);
         }
         return redirect()->back()->with('msg', "Username or password is wrong!")

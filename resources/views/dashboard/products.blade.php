@@ -149,7 +149,7 @@
                                                                     <td>{{ $product->category_name }}</td>
                                                                     <td>
                                                                         <img width="35"
-                                                                            src="{{ 'images/product/' . $product->imageUrl }}" />
+                                                                            src="{{ asset('images/product/' . $product->imageUrl) }}" />
                                                                     </td>
                                                                     <td>
                                                                         <label for="isActive"

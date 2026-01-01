@@ -38,8 +38,8 @@
                                         <div class="quantity">
                                             <div class="{{ $edit == true ? 'pro-qty' : null }}">
                                                 <input type="number" name="people" class="border-0"
-                                                    value="{{ old('people', $reservation->people) }}"
-                                                    {{ $edit == true ? null : 'disabled' }}
+                                                    value="{{ old('people', $reservation->people) }}" max="10"
+                                                    min="2" {{ $edit == true ? null : 'disabled' }}
                                                     form="update_form_{{ $reservation->id }}">
                                             </div>
                                         </div>
