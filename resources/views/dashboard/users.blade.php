@@ -67,7 +67,7 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td class="m-0 p-0" colspan="5">
+                                                                        <td class="m-0 p-0" colspan="7">
                                                                             <div class="toast p-1" style="display: none;"
                                                                                 id="toast_{{ $user->id }}"
                                                                                 role="alert" aria-live="assertive"
@@ -111,15 +111,16 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            function deleteButton(id) {
-                var toast = document.getElementById("toast_" + id);
-                if (toast.style.display == "none") {
-                    toast.style.display = "block";
-                } else {
-                    toast.style.display = "none";
-                }
-            };
-        </script>
-    @endsection
+    <script>
+        function deleteButton(id) {
+            var toast = document.getElementById("toast_" + id);
+            if (toast.style.display == "none") {
+                toast.style.display = "block";
+            } else {
+                toast.style.display = "none";
+            }
+        };
+    </script>
+@endsection

@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\OrderStatusController;
 use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\ReportController;
 use App\Http\Controllers\Dashboard\TableReservationController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\User\CartController;
@@ -25,7 +26,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test', [PaymentController::class, 'pay_order']);
+Route::get('/', [Controller::class, 'home'])->name('home');
+Route::get('/about', [Controller::class, 'about_us'])->name('about-us');
+Route::get('/menu', [Controller::class, 'menu'])->name('menu');
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'sign_in'])->name('sign-in');
@@ -42,14 +45,12 @@ Route::group(['middleware' => 'auth', 'prefix' => '/dashboard'], function () {
     Route::resource('/product', ProductController::class);
     Route::get('/orders', [OrderStatusController::class, 'index'])->name('order.status');
     Route::put('/orders/{order_id}', [OrderStatusController::class, 'update_status'])->name('order.status.update');
-    Route::get('/user', [DashboardUserController::class, 'index'])->name('user.index');
+    Route::get('/users', [DashboardUserController::class, 'index'])->name('user.index');
     Route::delete('/users/{id}', [DashboardUserController::class, 'destroy'])->name('user.destroy');
     Route::resource('/table-reservations', TableReservationController::class);
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports');
 });
 
-Route::get('/about', [Controller::class, 'about_us'])->name('about-us');
-Route::get('/home', [Controller::class, 'home'])->name('home');
-Route::get('/menu', [Controller::class, 'menu'])->name('menu');
 // User home
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');

@@ -12,7 +12,7 @@
         content=" Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="CodedThemes">
     <!-- Favicon icon -->
-    <link rel="icon" href="dashboard/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ asset('dashboard/images/favicon.ico') }}" type="image/x-icon">
     <!-- font awesome style -->
     <link href="{{ asset('template/css/font-awesome.min.css') }}" rel="stylesheet" />
     <!-- Google font-->
@@ -26,6 +26,11 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/css/jquery.mCustomScrollbar.css') }}">
+    <!-- Datatables start -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/datatables/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/datatables/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/datatables/css/icon-font.min.css') }}">
+    <!-- Datatables end -->
 </head>
 
 <body>
@@ -171,6 +176,8 @@
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Category</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
+                                </li>
+                                <li>
                                     <a href="{{ route('product.index') }}">
                                         <span class="pcoded-micon"><i class="ti-agenda"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Product</span>
@@ -193,6 +200,13 @@
                                     <a href="{{ route('table-reservations.index') }}">
                                         <span class="pcoded-micon"><i class="ti-book"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Reserved Tables</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="{{ route('reports') }}">
+                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Selling Reports</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -254,7 +268,7 @@
     <script type="text/javascript" src="{{ asset('dashboard/js/popper.js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('dashboard/js/bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/java script" src="{{ asset('dashboard/js/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('dashboard/js/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
     <!-- modernizr js -->
     <script type="text/javascript" src="{{ asset('dashboard/js/modernizr/modernizr.js') }}"></script>
     <!-- am chart -->
@@ -269,6 +283,24 @@
     <script src="{{ asset('dashboard/js/pcoded.min.js') }}"></script>
     <script src="{{ asset('dashboard/js/demo-12.js') }}"></script>
     <script src="{{ asset('dashboard/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+
+    <!-- Added for Datatables - starts here -->
+    <script src="{{ asset('dashboard/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('dashboard/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('dashboard/datatables/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('dashboard/datatables/js/responsive.bootstrap4.min.js') }}"></script>
+
+    <script src="{{ asset('dashboard/datatables/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('dashboard/datatables/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('dashboard/datatables/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('dashboard/datatables/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('dashboard/datatables/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('dashboard/datatables/js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('dashboard/datatables/js/vfs_fonts.js') }}"></script>
+
+    <script src="{{ asset('dashboard/datatables/js/datatable-setting.js') }}"></script>
+    <!-- Added for Datatables - ends here -->
+
     <script>
         /*for disappearing alert message*/
         window.onload = function() {
