@@ -10,13 +10,18 @@ use Illuminate\Http\Request;
 class OrderStatusController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(Request $request, $status = null)
     {
         $order_id = null;
         if ($request->has('order_id')) {
             $order_id = $request->order_id;
         }
-        $orders = Order::all();
+
+        if ($status == null)
+            $orders = Order::all();
+        else
+            $orders = Order::where('status', $status)->get();
+
         return view('dashboard.orders')
             ->with('orders', $orders)
             ->with('order_id', $order_id)

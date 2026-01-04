@@ -17,4 +17,9 @@ class Payment extends Model
         'address',
         'payment_mode',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

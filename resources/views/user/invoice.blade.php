@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="container">
-            <form action="{{ route('invoice.download', ['payment_id', $payment_id]) }}">
+            <form action="{{ route('invoice.download', ['payment_id' => $payment_id]) }}">
                 @csrf
                 <table class="table table-responsive-sm table-bordered table-hover" id="tblInvoice">
                     <thead class="bg-dark text-white">
@@ -28,9 +28,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($items as $item)
+                        @foreach ($items as $index => $item)
                             <tr>
-                                <td>{{ $item->id }}</td>
+                                <td>{{ $index + 1 }}</td>
                                 <td>{{ $item->order_no }}</td>
                                 <td>{{ $item->product->name }}</td>
                                 <td>{{ $item->unit_price }}</td>
@@ -42,7 +42,7 @@
                 </table>
                 <div class="text-center user_option">
                     <button class="order_online">
-                        <i class="fa fa-file-pdf mr-2"></i> Download Invoice
+                        <i class="fa fa-file-pdf-o mr-2"></i>Download Invoice
                     </button>
                 </div>
             </form>

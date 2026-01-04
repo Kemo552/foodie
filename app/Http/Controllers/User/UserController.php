@@ -5,10 +5,13 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditProfileRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\Order;
+use App\Models\Payment;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
@@ -88,7 +91,18 @@ class UserController extends Controller
     public function profile()
     {
         $user = auth()->user();
-        return view('user.profile', ['class' => 'sub_page', 'user' => $user]);
+        $user_id = $user->id;
+        $payments = Payment::whereHas('orders', function ($q) use ($user_id) {
+            $q->where('user_id', $user_id);
+        })->with('orders', function ($q) use ($user_id) {
+            $q->where('user_id', $user_id);
+        })->get();
+
+        return view('user.profile', [
+            'class' => 'sub_page',
+            'user' => $user,
+            'payments' => $payments,
+        ]);
     }
 
     public function edit_form(Request $request)

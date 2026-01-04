@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Foodie - Dashboard</title>
+    <title>{{ config('app.name') }} - Dashboard</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -88,7 +88,7 @@
                             <i class="ti-search"></i>
                         </a>
                         <a href="">
-                            Foodie - Dashboard
+                            {{ config('app.name') }} - Dashboard
                         </a>
                         <a class="mobile-options">
                             <i class="ti-more"></i>

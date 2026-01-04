@@ -21,8 +21,10 @@ class Controller extends BaseController
 
     public function home()
     {
-        if (auth()->user()->username == 'admin') {
-            return redirect('/dashboard/main');
+        if (!auth()->user() == null) {
+            if (auth()->user()->username == 'admin') {
+                return redirect('/dashboard/main');
+            }
         }
         return view('user.home')->with('class', null);
     }

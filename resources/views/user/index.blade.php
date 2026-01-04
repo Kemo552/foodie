@@ -13,7 +13,7 @@
     <meta name="author" content="" />
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="">
 
-    <title>Foodie</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('template/css/bootstrap.css') }}" />
@@ -64,7 +64,7 @@
                 <div class="container">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         <a class="navbar-brand" href="{{ route('home') }}">
-                            <span>Foodie</span>
+                            <span>{{ config('app.name') }}</span>
                         </a>
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -282,7 +282,7 @@
     @include('user.includes.footer')
 
     <!-- popper js -->
-    <script src="{{ asset('https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js') }}"
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
     </script>
     <!-- bootstrap js -->

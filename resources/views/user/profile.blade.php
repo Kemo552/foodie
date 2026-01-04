@@ -133,73 +133,57 @@
                                             </div>
                                         </div>
                                         {{-- End of Basic Info --}}
+                                        {{-- Purchased History --}}
                                         <div class="tab-pane fade" id="connectedServices" role="tabpanel"
                                             aria-labelledby="ConnectedServices-tab">
                                             <div class="container">
-                                                <div class="row pt-1 pb-1" style="background-color: lightgray;">
-                                                    <div class="col-4">
-                                                        <span class="badge badge-pill badge-dark text-white">
-                                                            <%# Eval("SrNo") %>
-                                                        </span>
-                                                        Payment Mode:
-                                                        <%# Eval("PaymentMode").ToString() == "cod" ? "Cash On Delievery" : Eval("PaymentMode").ToString().ToUpper() %>
+                                                @foreach ($payments as $index => $payment)
+                                                    <div class="row pt-1 pb-1" style="background-color: white;">
+                                                        <div class="col-4">
+                                                            <span class="badge badge-pill badge-dark text-white">
+                                                                {{ $index + 1 }}
+                                                            </span>
+                                                            Payment Mode:
+                                                            {{ $payment->payment_mode }}
+                                                        </div>
+                                                        <div class="col-6">
+                                                            {{ empty($payment->card_no) ? '' : 'Card No: ' . $payment->card_no }}
+                                                        </div>
+                                                        <div class="col-2" style="text-align: end;">
+                                                            <a href="{{ route('invoice.download', ['payment_id' => $payment->id]) }}"
+                                                                class="btn btn-info"><i
+                                                                    class="fa fa-download mr-2"></i>Invoice</a>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-6">
-                                                        <%# string.IsNullOrEmpty(Eval("CardNo").ToString()) ? "" : "Card No:" + Eval("CardNo") %>
-                                                    </div>
-                                                    <div class="col-2" style="text-align: end;">
-                                                        <a href='Invoice.aspx?id=<%# Eval("PaymentId") %>'
-                                                            class="btn btn-info"><i
-                                                                class="fa fa-download mr-2"></i>Invoice</a>
-                                                    </div>
-                                                </div>
-                                                <table
-                                                    class="table data-table-export table-responsive-sm table-bordered table-hover">
-                                                    <thead class="bg-dark text-white">
-                                                        <tr>
-                                                            <th>Product Name</th>
-                                                            <th>Unit Price</th>
-                                                            <th>Qty</th>
-                                                            <th>Total Price</th>
-                                                            <th>OrderId</th>
-                                                            <th>Status</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <asp:Label ID="lblName" runat="server"
-                                                                    Text='<%# Eval("Name") %>'></asp:Label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label ID="lblPrice" runat="server"
-                                                                    Text='<%# string.IsNullOrEmpty(Eval("Price").ToString())? "" : "$"+Eval("Price") %>'>
-                                                                </asp:Label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label ID="lblQuantity" runat="server"
-                                                                    Text='<%# Eval("Quantity") %>'></asp:Label>
-                                                            </td>
-                                                            <td>
-                                                                $<asp:Label ID="lblTotalPrice" runat="server"
-                                                                    Text='<%# Eval("TotalPrice") %>'></asp:Label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label ID="lblOrderNo" runat="server"
-                                                                    Text='<%# Eval("OrderNo") %>'></asp:Label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label ID="lblStatus" runat="server"
-                                                                    Text='<%# Eval("Status") %>'
-                                                                    CssClass='<%# Eval("Status").ToString() == "Delivered"? "badge badge-success" :"badge badge-warning" %>'>
-                                                                </asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                    <table
+                                                        class="table data-table-export table-responsive-sm table-bordered table-hover">
+                                                        <thead class="bg-dark text-white">
+                                                            <tr>
+                                                                <th>Product Name</th>
+                                                                <th>Unit Price</th>
+                                                                <th>Qty</th>
+                                                                <th>Total Price</th>
+                                                                <th>OrderId</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($payment->orders as $order)
+                                                                <tr>
+                                                                    <td>{{ $order->product->name }}</td>
+                                                                    <td>{{ $order->unit_price }}</td>
+                                                                    <td>{{ $order->quantity }}</td>
+                                                                    <td>{{ $order->total_price }}</td>
+                                                                    <td>{{ $order->id }}</td>
+                                                                    <td>{{ $order->status }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                    <hr>
+                                                @endforeach
                                             </div>
                                         </div>
-                                        {{-- Purchased History --}}
                                         {{-- End of Purchased History --}}
                                     </div>
                                 </div>

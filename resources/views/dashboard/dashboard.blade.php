@@ -68,7 +68,7 @@
                                 <h4>{{ $delivered_items }}</h4>
                                 <div>
                                     <span class="f-10 m-t-10 text-muted">
-                                        <a href="/dashboard/orders"><i
+                                        <a href="/dashboard/ordersz"><i
                                                 class="text-c-yellow f-16 icofont icofont-eye-alt m-r-15"></i>View
                                             Details</a>
                                     </span>
@@ -151,7 +151,6 @@
                             </div>
                         </div>
                     </div>
-
 
                 </div>
             </div>

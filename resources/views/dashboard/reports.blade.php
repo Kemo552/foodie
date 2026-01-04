@@ -44,9 +44,9 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach ($reports as $report)
+                                                                @foreach ($reports as $index => $report)
                                                                     <tr>
-                                                                        <td>{{ $report->id }}</td>
+                                                                        <td>{{ $index + 1 }}</td>
                                                                         <td>{{ $report->name }}</td>
                                                                         <td>{{ $report->email }}</td>
                                                                         <td>{{ $report->phone }}</td>
