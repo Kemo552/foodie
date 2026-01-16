@@ -17,7 +17,9 @@ return new class extends Migration {
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('payment_id');
             $table->integer('quantity', false, true)->default(1);
-            $table->enum('status', ['pending', 'delivered'])->default('pending');
+            $table->enum('status', ['pending', 'paid', 'delivered'])->default('pending');
+            $table->double('unit_price');
+            $table->double('total_price');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->cascadeOnUpdate()->cascadeOnDelete();
